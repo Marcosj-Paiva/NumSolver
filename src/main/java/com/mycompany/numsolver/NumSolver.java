@@ -7,6 +7,7 @@ package com.mycompany.numsolver;
 import model.MetodoGauss;
 import presenter.SolverPresenter;
 import view.ViewSolver;
+import view.ViewSolverTeste;
 
 /**
  *
@@ -15,9 +16,9 @@ import view.ViewSolver;
 public class NumSolver {
 
     public static void main(String[] args) {
-        ViewSolver view = new ViewSolver();
+        ViewSolverTeste view = new ViewSolverTeste();
         MetodoGauss metodoGauss = new MetodoGauss();
-        SolverPresenter presenter = new SolverPresenter(view,metodoGauss,3);
+        SolverPresenter presenter = new SolverPresenter(view,metodoGauss);
         
         view.setPresenter(presenter);
         

@@ -5,49 +5,57 @@
 package presenter;
 
 import model.MetodoGauss;
-import view.ViewSolver;
+
+import view.ViewSolverTeste;
 
 /**
  *
  * @author marqu
  */
 public class SolverPresenter {
-    private final ViewSolver view;
+    private final ViewSolverTeste view;
     private final MetodoGauss metodoGauss;
-    private final int dim;
-    
-    public SolverPresenter(ViewSolver view, MetodoGauss metodoGauss, int dim){
+
+    public SolverPresenter(ViewSolverTeste view, MetodoGauss metodoGauss) {
         this.view = view;
         this.metodoGauss = metodoGauss;
-        this.dim = dim;
+
     }
-    
-    public void gerarResultado(){
-        System.out.println("Botão Calcular foi clicado!");
-        float mat[][] = new float[dim][dim]; 
-        mat[0][0] = Float.parseFloat(view.getX11().getText());
-        mat[1][0] = Float.parseFloat(view.getX12().getText());
-        mat[2][0] = Float.parseFloat(view.getX13().getText());
-        mat[0][1] = Float.parseFloat(view.getY11().getText());
-        mat[1][1] = Float.parseFloat(view.getY12().getText());
-        mat[2][1] = Float.parseFloat(view.getY13().getText());
-        mat[0][2] = Float.parseFloat(view.getZ11().getText());
-        mat[1][2] = Float.parseFloat(view.getZ12().getText());
-        mat[2][2] = Float.parseFloat(view.getZ13().getText());
-        
-        float vetRes[] = new float[dim];
-        vetRes[0] = Float.parseFloat(view.getR11().getText());
-        vetRes[1] = Float.parseFloat(view.getR12().getText());
-        vetRes[2] = Float.parseFloat(view.getR13().getText());
-        System.out.println("resultado");
-        float resultado[] = metodoGauss.calcular(mat, vetRes, dim);
-        System.out.println("resultadooo");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < dim; i++) {
-            sb.append("x").append(i + 1).append(" = ").append(resultado[i]).append("\n");
+
+    public void gerarResultado() {
+        try {
+            // Lê a matriz
+            String[] linhas = view.getTextMatriz().trim().split("\\n");
+            int n = linhas.length;
+            float[][] mat = new float[n][n];
+
+            for (int i = 0; i < n; i++) {
+                String[] valores = linhas[i].trim().split("\\s+");
+                for (int j = 0; j < n; j++) {
+                    mat[i][j] = Float.parseFloat(valores[j]);
+                }
+            }
+
+            // Lê o vetor
+            String[] vetLinhas = view.getTextVetor().trim().split("\\n");
+
+            float[] vet = new float[n];
+            for (int i = 0; i < n; i++) {
+                vet[i] = Float.parseFloat(vetLinhas[i].trim());
+            }
+
+            // Calcula
+            float[] resultado = metodoGauss.calcular(mat, vet, n);
+
+            // Mostra na View
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < resultado.length; i++) {
+                sb.append("x").append(i + 1).append(" = ").append(String.format("%.4f", resultado[i])).append("\n");
+            }
+
+            view.setTextResultado(sb.toString());
+
+        } catch (Exception ex) {
         }
-        System.out.println("resultado2");
-        view.setResultado(sb.toString());
-        System.out.println("resultado 3");
     }
 }
