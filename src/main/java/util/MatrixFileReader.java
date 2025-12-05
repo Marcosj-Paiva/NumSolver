@@ -6,13 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Utility class to read matrix data from .dat files
- * File format:
- * - First line: dimension n
- * - Next n lines: matrix rows (space-separated values)
- * - Last line: result vector (space-separated values)
- */
 public class MatrixFileReader {
 
     public static class MatrixData {
@@ -41,30 +34,29 @@ public class MatrixFileReader {
         }
 
         if (lines.isEmpty()) {
-            throw new IOException("File is empty");
+            throw new IOException("Arquivo vazio");
         }
 
         int n = Integer.parseInt(lines.get(0));
 
         if (lines.size() < n + 2) {
-            throw new IOException("File format is invalid. Expected " + (n + 2) + " lines, got " + lines.size());
+            throw new IOException("Formato de arquivo inválido. Esperado " + (n + 2) + " linhas, recebido " + lines.size());
         }
 
         float[][] matrix = new float[n][n];
         for (int i = 0; i < n; i++) {
             String[] values = lines.get(i + 1).trim().split("\\s+");
             if (values.length != n) {
-                throw new IOException("Invalid matrix row " + (i + 1) + ". Expected " + n + " values, got " + values.length);
+                throw new IOException("Linha de matriz inválida " + (i + 1) + ". Esperado " + n + " valores, recebido " + values.length);
             }
             for (int j = 0; j < n; j++) {
                 matrix[i][j] = Float.parseFloat(values[j]);
             }
         }
 
-        // Read result vector
         String[] vectorValues = lines.get(n + 1).trim().split("\\s+");
         if (vectorValues.length != n) {
-            throw new IOException("Invalid result vector. Expected " + n + " values, got " + vectorValues.length);
+            throw new IOException("Vetor resultado inválido. Esperado " + n + " valores, recebido " + vectorValues.length);
         }
 
         float[] resultVector = new float[n];

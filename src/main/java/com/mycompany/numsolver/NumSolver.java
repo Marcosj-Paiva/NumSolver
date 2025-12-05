@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.numsolver;
 
 import cli.CLISolver;
@@ -9,10 +5,6 @@ import model.MetodoGauss;
 import presenter.SolverPresenter;
 import view.ViewSolverTeste;
 
-/**
- *
- * @author marqu
- */
 public class NumSolver {
 
     public static void main(String[] args) {

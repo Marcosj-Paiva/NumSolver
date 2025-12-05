@@ -1,28 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import javax.swing.JTextField;
 import presenter.SolverPresenter;
 
-/**
- *
- * @author marqu
- */
 public class ViewSolver extends javax.swing.JFrame {
-    
+
     private SolverPresenter presenter;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ViewSolver.class.getName());
 
     public void setPresenter(SolverPresenter presenter) {
         this.presenter = presenter;
     }
-    
-    /**
-     * Creates new form ViewSolver
-     */
+
     public ViewSolver() {
         initComponents();
     }
