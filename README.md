@@ -19,4 +19,4 @@ java -jar NumSolver.jar -f sistema3x3.dat
 ```
 
 Também é possivel a utilização pela inteface gráfica, tanto escrevendo a matriz quanto enviando um aruivo .dat e depois clicando em calcular
-!(interface.png)
+![Interface do Projeto](./Interface.png)
