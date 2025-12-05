@@ -10,8 +10,16 @@ public class ViewSolverTeste extends javax.swing.JFrame {
 
     public ViewSolverTeste() {
         initComponents();
+        anexarEventos();
     }
-
+    
+    private void anexarEventos() {
+        btnCarregarArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarregarArquivoActionPerformed(evt);
+            }
+        });
+    }
 
     public void setPresenter(SolverPresenter presenter) {
         this.presenter = presenter;
@@ -39,6 +47,7 @@ public class ViewSolverTeste extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         TextVetor = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        btnCarregarArquivo = new javax.swing.JToggleButton();
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -76,6 +85,8 @@ public class ViewSolverTeste extends javax.swing.JFrame {
 
         jLabel2.setText("=");
 
+        btnCarregarArquivo.setText("Carregar Aquivo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,25 +94,27 @@ public class ViewSolverTeste extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jLabel15))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(jLabel15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnCarregarArquivo)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -121,16 +134,18 @@ public class ViewSolverTeste extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addComponent(jScrollPane4))
                 .addGap(18, 18, 18)
+                .addComponent(btnCarregarArquivo)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,6 +158,21 @@ public class ViewSolverTeste extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnCarregarArquivoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        if (presenter != null) {
+            presenter.carregarArquivo();
+        }
+    } 
+    
+    public void setTextVetor(String texto) {
+        TextVetor.setText(texto);
+    }
+    
+    public void setTextMatriz(String texto) {
+        TextMatriz.setText(texto);
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -172,6 +202,7 @@ public class ViewSolverTeste extends javax.swing.JFrame {
     private javax.swing.JTextArea TextMatriz;
     private javax.swing.JTextArea TextResultado;
     private javax.swing.JTextArea TextVetor;
+    private javax.swing.JToggleButton btnCarregarArquivo;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
